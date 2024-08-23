@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tic Tac Toe AI for papergames
 // @namespace    https://github.com/longkidkoolstar
-// @version      1.0
+// @version      1.0.1
 // @description  AI plays Tic-Tac-Toe for you on papergames.io. Have fun and destroy some nerds 😃!!
 // @author       longkidkoolstar
 // @icon         https://th.bing.com/th/id/R.3502d1ca849b062acb85cf68a8c48bcd?rik=LxTvt1UpLC2y2g&pid=ImgRaw&r=0
@@ -15,6 +15,7 @@
     'use strict';
 
     var depth = await GM.getValue('depth', depth);
+    var user = await GM.getValue('user', user);
 
 // Function to check if the element is visible
 function isElementVisible(element) {
@@ -72,7 +73,7 @@ function simulateCellClick(row, col) {
         var event = new MouseEvent('click', {
             bubbles: true,
             cancelable: true,
-            view: window
+            //view: window
         });
         cell.dispatchEvent(event);
     }
@@ -414,7 +415,18 @@ function updateBoard(squareId) {
 
 var player;
 
-
+function debugVariables() {
+    console.log("player:", player);
+    console.log("row:", row);
+    console.log("col:", col);
+    console.log("profileOpener:", profileOpener);
+    console.log("chronometer:", chronometer);
+    console.log("numberElement:", numberElement);
+    console.log("profileOpenerParent:", profileOpenerParent);
+    console.log("svgElement:", svgElement);
+    console.log("prevChronometerValue:", prevChronometerValue);
+}
+setInterval(debugVariables, 1000);
 
     function initGame() {
         var observer = new MutationObserver(function(mutations) {
