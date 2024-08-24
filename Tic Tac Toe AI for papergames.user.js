@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tic Tac Toe AI for papergames
 // @namespace    https://github.com/longkidkoolstar
-// @version      1.0.2
+// @version      2.0
 // @description  AI plays Tic-Tac-Toe for you on papergames.io. Have fun and destroy some nerds 😃!!
 // @author       longkidkoolstar
 // @icon         https://th.bing.com/th/id/R.3502d1ca849b062acb85cf68a8c48bcd?rik=LxTvt1UpLC2y2g&pid=ImgRaw&r=0
@@ -71,7 +71,7 @@ function simulateCellClick(row, col) {
         var event = new MouseEvent('click', {
             bubbles: true,
             cancelable: true,
-            view: window
+            //view: window
         });
         cell.dispatchEvent(event);
     }
@@ -80,22 +80,22 @@ function simulateCellClick(row, col) {
     var prevChronometerValue = null;
 
 
-      // Check if username is stored in local storage
-      var username = localStorage.getItem('username');
+      // Check if user is stored in local storage
+      var user = localStorage.getItem('user');
 
-      if (!username) {
+      if (!user) {
           // Alert the user
           alert('Username is not stored in local storage.');
 
-          // Prompt the user to enter the username
-          username = prompt('Please enter your Papergames username (case-sensitive):');
+          // Prompt the user to enter the user
+          user = prompt('Please enter your Papergames user (case-sensitive):');
 
-          // Save the username to local storage
-          localStorage.setItem('username', username);
+          // Save the user to local storage
+          localStorage.setItem('user', user);
       }
 
 function logout() {
-        localStorage.removeItem('username');
+        localStorage.removeItem('user');
         location.reload();
     }
 
@@ -376,7 +376,7 @@ function updateBoard(squareId) {
     var profileOpener = null;
 
     profileOpeners.forEach(function(opener) {
-        if (opener.textContent.trim() === username) {
+        if (opener.textContent.trim() === user) {
             profileOpener = opener;
         }
     });
